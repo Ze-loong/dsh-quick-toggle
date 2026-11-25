@@ -1,0 +1,67 @@
+{
+  "name": "dsh-quick-toggle",
+  "version": "0.1.0",
+  "type": "module",
+  "license": "MIT",
+  "author": "Zeloong",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ze-loong/dsh-quick-toggle.git"
+  },
+  "homepage": "https://github.com/Ze-loong/dsh-quick-toggle#readme",
+  "bugs": {
+    "url": "https://github.com/Ze-loong/dsh-quick-toggle/issues"
+  },
+  "description": "在输入框里快捷开关第三方插件：/toggle 弹出列表、🔌 按钮、常用置顶、批量关闭与一键恢复（排查问题用）。Toggle DeepSeek Harness plugins from the composer: a /toggle picker, a 🔌 button, pins, and disable-all with one-click restore.",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "plugin-manager",
+    "toggle",
+    "troubleshooting"
+  ],
+  "icon": "./icon.svg",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "icon.svg",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "check": "node --check index.js && node --check client.js",
+    "test": "node test/run.mjs"
+  },
+  "engines": {
+    "node": ">=20",
+    "dsh": ">=0.2.2-rc.5 <0.3.0-0"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/schemastery": "^3.18.0"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/schemastery": {
+      "optional": true
+    }
+  },
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-commands",
+        "@deepseek-ai/dsh-api-session-controller",
+        "@deepseek-ai/dsh-api-remotes"
+      ]
+    }
+  }
+}
